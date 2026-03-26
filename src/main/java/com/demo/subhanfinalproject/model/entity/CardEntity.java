@@ -1,5 +1,6 @@
 package com.demo.subhanfinalproject.model.entity;
 
+import com.demo.subhanfinalproject.model.enums.CardStatus;
 import com.demo.subhanfinalproject.model.enums.Currency;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -20,6 +21,9 @@ public class CardEntity extends BaseEntity {
     private String number;
     private String cvv;
     private BigDecimal balance;
+
+    @Enumerated(EnumType.STRING)
+    private CardStatus status;
 
     @Enumerated(EnumType.STRING)
     private Currency currentCurrency;

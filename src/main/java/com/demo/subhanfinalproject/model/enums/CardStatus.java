@@ -1,7 +1,8 @@
 package com.demo.subhanfinalproject.model.enums;
 
-public enum CurrentAccountStatus {
+public enum CardStatus {
+    NEW,
     ACTIVE,
-    PROCESS,
-    EXPIRED
+    EXPIRED,
+    PROCESS
 }

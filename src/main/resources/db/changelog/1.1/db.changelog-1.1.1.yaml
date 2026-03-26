@@ -1,0 +1,16 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1.1.1-add-customer-id-to-payments
+      author: subhanehmedov
+      changes:
+        - addColumn:
+            tableName: payments
+            columns:
+              - column:
+                  name: customer_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_payments_customer
+                    referencedTableName: customers
+                    referencedColumnNames: id

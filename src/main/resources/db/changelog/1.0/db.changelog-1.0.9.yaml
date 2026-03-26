@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1.0.9-add-status-to-cards
+      author: subhanehmedov
+      changes:
+        - addColumn:
+            tableName: cards
+            columns:
+              - column:
+                  name: status
+                  type: VARCHAR
+        - addColumn:
+            tableName: current_accounts
+            columns:
+              - column:
+                  name: status
+                  type: VARCHAR

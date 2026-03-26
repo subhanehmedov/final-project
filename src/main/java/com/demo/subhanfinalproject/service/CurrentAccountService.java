@@ -7,6 +7,7 @@ import com.demo.subhanfinalproject.model.dto.request.CurrentAccountRequest;
 import com.demo.subhanfinalproject.model.dto.response.CurrentAccountResponse;
 import com.demo.subhanfinalproject.model.entity.CurrentAccountEntity;
 import com.demo.subhanfinalproject.model.entity.CustomerEntity;
+import com.demo.subhanfinalproject.model.enums.CurrentAccountStatus;
 import com.demo.subhanfinalproject.repository.CurrentAccountRepository;
 import com.demo.subhanfinalproject.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
@@ -32,11 +33,13 @@ public class CurrentAccountService {
             throw new LimitExceededException("Max current account count must be 2");
         }
         CurrentAccountEntity currentAccountEntity = initializeCurrentAccount();
+        currentAccountEntity.setStatus(CurrentAccountStatus.PROCESS);
         currentAccountEntity.setCustomer(customerEntity);
         currentAccountEntity.setCurrentCurrency(currentAccountRequest.getCurrency());
         currentAccountEntity.setBaseCurrency(currentAccountRequest.getCurrency());
         currentAccountEntity.setBalance(BigDecimal.ZERO);
         currentAccountEntity.setExpirationDate(LocalDateTime.now().plusYears(3));
+        currentAccountEntity.setStatus(CurrentAccountStatus.ACTIVE);
         CurrentAccountEntity savedEntity = currentAccountRepository.save(currentAccountEntity);
         return currentAccountMapper.toResponse(savedEntity);
     }

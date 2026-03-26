@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1.1.0-create-not-null-constraint
+      author: subhanehmedov
+      changes:
+        - addNotNullConstraint:
+            tableName: cards
+            columnName: status
+        - addNotNullConstraint:
+            tableName: current_accounts
+            columnName: status

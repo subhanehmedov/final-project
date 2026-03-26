@@ -1,7 +1,7 @@
 package com.demo.subhanfinalproject.model.dto.response;
 
 import com.demo.subhanfinalproject.model.enums.Currency;
-import com.demo.subhanfinalproject.model.enums.CurrentAccountStatus;
+import com.demo.subhanfinalproject.model.enums.PaymentStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,12 +14,11 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CurrentAccountResponse {
-    private CurrentAccountStatus status;
-    private Long id;
-    private String number;
-    private BigDecimal balance;
+public class PaymentResponse {
+    private String from;
+    private String to;
+    private BigDecimal amount;
+    private PaymentStatus paymentStatus;
     private Currency currency;
-    private LocalDateTime expirationDate;
-    private Long customerId;
+    private LocalDateTime processedAt;
 }

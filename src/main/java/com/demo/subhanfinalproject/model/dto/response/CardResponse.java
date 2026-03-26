@@ -1,5 +1,6 @@
 package com.demo.subhanfinalproject.model.dto.response;
 
+import com.demo.subhanfinalproject.model.enums.CardStatus;
 import com.demo.subhanfinalproject.model.enums.Currency;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,6 +15,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CardResponse {
+    private CardStatus cardStatus;
     private String number;
     private String cvv;
     private BigDecimal balance;

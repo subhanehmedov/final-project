@@ -25,6 +25,7 @@ public class CardMapper {
                         .multiply(currencyUtil.getExchangeRate(cardEntity.getBaseCurrency(), cardEntity.getCurrentCurrency()))
                         .setScale(2, RoundingMode.HALF_UP)
         );
+        cardResponse.setCardStatus(cardEntity.getStatus());
         return cardResponse;
     }
 }

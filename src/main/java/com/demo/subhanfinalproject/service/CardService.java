@@ -7,6 +7,7 @@ import com.demo.subhanfinalproject.model.dto.request.CardRequest;
 import com.demo.subhanfinalproject.model.dto.response.CardResponse;
 import com.demo.subhanfinalproject.model.entity.CardEntity;
 import com.demo.subhanfinalproject.model.entity.CustomerEntity;
+import com.demo.subhanfinalproject.model.enums.CardStatus;
 import com.demo.subhanfinalproject.model.enums.Currency;
 import com.demo.subhanfinalproject.repository.CardRepository;
 import com.demo.subhanfinalproject.repository.CustomerRepository;
@@ -36,11 +37,13 @@ public class CardService {
             throw new LimitExceededException("Max card count must be 2");
         }
         CardEntity cardEntity = initializeCard();
+        cardEntity.setStatus(CardStatus.PROCESS);
         cardEntity.setBalance(BigDecimal.ZERO);
         cardEntity.setCurrentCurrency(cardRequest.getCurrency());
         cardEntity.setBaseCurrency(cardRequest.getCurrency());
         cardEntity.setExpirationDate(LocalDateTime.now().plusYears(3));
         cardEntity.setCustomer(customerEntity);
+        cardEntity.setStatus(CardStatus.NEW);
         CardEntity savedEntity = cardRepository.save(cardEntity);
         return cardMapper.toResponse(savedEntity);
     }

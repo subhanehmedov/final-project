@@ -26,6 +26,7 @@ public class CurrentAccountMapper {
                         .multiply(currencyUtil.getExchangeRate(currentAccountEntity.getBaseCurrency(), currentAccountEntity.getCurrentCurrency()))
                         .setScale(2, RoundingMode.HALF_UP)
         );
+        currentAccountResponse.setStatus(currentAccountEntity.getStatus());
         return currentAccountResponse;
     }
 }

@@ -1,5 +1,6 @@
 package com.demo.subhanfinalproject.model.entity;
 
+import com.demo.subhanfinalproject.model.enums.CurrentAccountStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,6 +20,9 @@ import com.demo.subhanfinalproject.model.enums.Currency;
 public class CurrentAccountEntity extends BaseEntity {
     private String number;
     private BigDecimal balance;
+
+    @Enumerated(EnumType.STRING)
+    private CurrentAccountStatus status;
 
     @Enumerated(EnumType.STRING)
     private Currency currentCurrency;
