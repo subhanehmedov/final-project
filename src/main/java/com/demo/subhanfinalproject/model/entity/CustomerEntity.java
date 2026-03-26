@@ -14,6 +14,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "customers")
 public class CustomerEntity extends BaseEntity {
     private String name;
     private String surname;

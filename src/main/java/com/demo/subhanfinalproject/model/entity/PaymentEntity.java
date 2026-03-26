@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "payments")
 public class PaymentEntity extends BaseEntity {
 
     @Enumerated(EnumType.STRING)

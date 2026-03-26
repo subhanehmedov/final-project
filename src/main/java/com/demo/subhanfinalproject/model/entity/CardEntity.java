@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "cards")
 public class CardEntity extends BaseEntity {
     private String number;
     private String cvv;

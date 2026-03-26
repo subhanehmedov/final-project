@@ -15,6 +15,7 @@ import com.demo.subhanfinalproject.model.enums.Currency;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "current_accounts")
 public class CurrentAccountEntity extends BaseEntity {
     private String number;
     private BigDecimal balance;

@@ -1,0 +1,75 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1.0.3-create-payments-table
+      author: subhanehmedov
+      changes:
+        - createTable:
+            tableName: payments
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: amount
+                  type: DECIMAL(19, 2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: currency
+                  type: VARCHAR
+                  constraints:
+                    nullable: false
+              - column:
+                  name: payment_status
+                  type: VARCHAR
+                  constraints:
+                    nullable: false
+              - column:
+                  name: processed_at
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: from_card_id
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: fk_payments_from_card
+                    referencedTableName: cards
+                    referencedColumnNames: id
+              - column:
+                  name: to_card_id
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: fk_payments_to_card
+                    referencedTableName: cards
+                    referencedColumnNames: id
+              - column:
+                  name: from_current_account_id
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: fk_payments_from_account
+                    referencedTableName: current_accounts
+                    referencedColumnNames: id
+              - column:
+                  name: to_current_account_id
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: fk_payments_to_account
+                    referencedTableName: current_accounts
+                    referencedColumnNames: id
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
