@@ -27,4 +27,11 @@ public class CustomerEntity extends BaseEntity {
             mappedBy = "customer"
     )
     private List<CardEntity> cardEntities;
+
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            mappedBy = "customer"
+    )
+    private List<CurrentAccountEntity> currentAccounts;
 }
