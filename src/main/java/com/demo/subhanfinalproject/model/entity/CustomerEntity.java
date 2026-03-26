@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -27,12 +28,12 @@ public class CustomerEntity extends BaseEntity {
             orphanRemoval = true,
             mappedBy = "customer"
     )
-    private List<CardEntity> cardEntities;
+    private List<CardEntity> cards = new ArrayList<>();
 
     @OneToMany(
             cascade = CascadeType.ALL,
             orphanRemoval = true,
             mappedBy = "customer"
     )
-    private List<CurrentAccountEntity> currentAccounts;
+    private List<CurrentAccountEntity> currentAccounts = new ArrayList<>();
 }
