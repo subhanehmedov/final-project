@@ -1,5 +1,6 @@
 package com.demo.subhanfinalproject.exception.handler;
 
+import com.demo.subhanfinalproject.exception.custom.LimitExceededException;
 import com.demo.subhanfinalproject.exception.custom.NotFoundException;
 import com.demo.subhanfinalproject.model.dto.response.ErrorResponse;
 import org.springframework.http.HttpStatus;
@@ -14,12 +15,20 @@ import java.time.LocalDateTime;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = NotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
     public ResponseEntity<ErrorResponse> handleException(NotFoundException e) {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setMessage(e.getMessage());
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setCode(HttpStatus.NOT_FOUND.value());
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(value = LimitExceededException.class)
+    public ResponseEntity<ErrorResponse> handleException(LimitExceededException e) {
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setMessage(e.getMessage());
+        errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setCode(HttpStatus.BAD_REQUEST.value());
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 }

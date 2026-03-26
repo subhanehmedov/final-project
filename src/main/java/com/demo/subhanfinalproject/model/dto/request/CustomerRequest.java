@@ -1,4 +1,4 @@
-package com.demo.subhanfinalproject.model.dto.response;
+package com.demo.subhanfinalproject.model.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

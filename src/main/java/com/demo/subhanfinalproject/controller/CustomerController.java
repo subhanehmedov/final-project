@@ -1,6 +1,6 @@
 package com.demo.subhanfinalproject.controller;
 
-import com.demo.subhanfinalproject.model.dto.response.CustomerRequest;
+import com.demo.subhanfinalproject.model.dto.request.CustomerRequest;
 import com.demo.subhanfinalproject.model.dto.response.CustomerResponse;
 import com.demo.subhanfinalproject.service.CustomerService;
 import lombok.RequiredArgsConstructor;

@@ -22,6 +22,8 @@ public class CustomerEntity extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     private CustomerStatus status;
+    private Integer cardCount = 0;
+    private Integer currentAccountCount = 0;
 
     @OneToMany(
             cascade = CascadeType.ALL,

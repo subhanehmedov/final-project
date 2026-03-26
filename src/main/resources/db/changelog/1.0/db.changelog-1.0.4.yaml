@@ -1,0 +1,20 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1.0.4-add-counts-to-customers
+      author: subhanehmedov
+      changes:
+        - addColumn:
+            tableName: customers
+            columns:
+              - column:
+                  name: card_count
+                  type: INTEGER
+                  defaultValueNumeric: "0"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: current_account_count
+                  type: INTEGER
+                  defaultValueNumeric: "0"
+                  constraints:
+                    nullable: false

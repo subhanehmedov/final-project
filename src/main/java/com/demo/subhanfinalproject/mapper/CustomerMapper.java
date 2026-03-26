@@ -1,6 +1,6 @@
 package com.demo.subhanfinalproject.mapper;
 
-import com.demo.subhanfinalproject.model.dto.response.CustomerRequest;
+import com.demo.subhanfinalproject.model.dto.request.CustomerRequest;
 import com.demo.subhanfinalproject.model.dto.response.CustomerResponse;
 import com.demo.subhanfinalproject.model.entity.CustomerEntity;
 import com.demo.subhanfinalproject.model.enums.CustomerStatus;

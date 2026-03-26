@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1.0.5-add-unique-constraint-to-card-number
+      author: subhanehmedov
+      changes:
+        - addUniqueConstraint:
+            tableName: cards
+            columnNames: number

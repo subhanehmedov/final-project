@@ -2,7 +2,7 @@ package com.demo.subhanfinalproject.service;
 
 import com.demo.subhanfinalproject.exception.custom.NotFoundException;
 import com.demo.subhanfinalproject.mapper.CustomerMapper;
-import com.demo.subhanfinalproject.model.dto.response.CustomerRequest;
+import com.demo.subhanfinalproject.model.dto.request.CustomerRequest;
 import com.demo.subhanfinalproject.model.dto.response.CustomerResponse;
 import com.demo.subhanfinalproject.model.entity.CustomerEntity;
 import com.demo.subhanfinalproject.model.enums.CustomerStatus;
