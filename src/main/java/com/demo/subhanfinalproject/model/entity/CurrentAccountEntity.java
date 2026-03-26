@@ -21,7 +21,11 @@ public class CurrentAccountEntity extends BaseEntity {
     private BigDecimal balance;
 
     @Enumerated(EnumType.STRING)
-    private Currency currency;
+    private Currency currentCurrency;
+
+    @Enumerated(EnumType.STRING)
+    private Currency baseCurrency;
+
     private LocalDateTime expirationDate;
 
     @ManyToOne(fetch = FetchType.LAZY)

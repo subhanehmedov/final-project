@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1.0.7-add-base-currency-to-cards
+      author: subhanehmedov
+      changes:
+        - addColumn:
+            tableName: cards
+            columns:
+              - column:
+                  name: base_currency
+                  type: VARCHAR
+                  constraints:
+                    nullable: false

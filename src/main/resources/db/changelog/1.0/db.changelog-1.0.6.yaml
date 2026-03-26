@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1.0.6-drop-counts-from-customers
+      author: subhanehmedov
+      changes:
+        - dropColumn:
+            tableName: customers
+            columnName: card_count
+        - dropColumn:
+            tableName: customers
+            columnName: current_account_count

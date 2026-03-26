@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CurrentAccountResponse {
+    private Long id;
     private String number;
     private BigDecimal balance;
     private Currency currency;

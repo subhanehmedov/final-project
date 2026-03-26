@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1.0.8-create-currencies-on-current-accounts
+      author: subhanehmedov
+      changes:
+        - addColumn:
+            tableName: current_accounts
+            columns:
+              - column:
+                  name: base_currency
+                  type: VARCHAR
+                  constraints:
+                    nullable: false
+        - renameColumn:
+            tableName: current_accounts
+            newColumnName: current_currency
+            oldColumnName: currency

@@ -10,6 +10,7 @@ import com.demo.subhanfinalproject.model.entity.CustomerEntity;
 import com.demo.subhanfinalproject.model.enums.Currency;
 import com.demo.subhanfinalproject.repository.CardRepository;
 import com.demo.subhanfinalproject.repository.CustomerRepository;
+import com.demo.subhanfinalproject.util.CurrencyUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -25,20 +26,21 @@ public class CardService {
     private final CustomerRepository customerRepository;
     private final CardMapper cardMapper;
     private final CardRepository cardRepository;
+    private final CurrencyUtil currencyUtil;
 
     public CardResponse orderCard(CardRequest cardRequest, Long customerId) {
         CustomerEntity customerEntity = customerRepository.findById(customerId)
                 .orElseThrow(() -> new NotFoundException("Customer not found"));
 
-        if (customerEntity.getCardCount() >= 2) {
+        if (customerEntity.getCards().size() >= 2) {
             throw new LimitExceededException("Max card count must be 2");
         }
         CardEntity cardEntity = initializeCard();
         cardEntity.setBalance(BigDecimal.ZERO);
-        cardEntity.setCurrency(cardRequest.getCurrency());
+        cardEntity.setCurrentCurrency(cardRequest.getCurrency());
+        cardEntity.setBaseCurrency(cardRequest.getCurrency());
         cardEntity.setExpirationDate(LocalDateTime.now().plusYears(3));
         cardEntity.setCustomer(customerEntity);
-        customerEntity.setCardCount(customerEntity.getCardCount() + 1);
         CardEntity savedEntity = cardRepository.save(cardEntity);
         return cardMapper.toResponse(savedEntity);
     }
@@ -75,17 +77,7 @@ public class CardService {
     public CardResponse updateCard(Long id, CardRequest cardRequest) {
         CardEntity cardEntity = cardRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Card not found"));
-        Currency sourceCurrency = cardEntity.getCurrency();
-        Currency targetCurrency = cardRequest.getCurrency();
-
-        if (!sourceCurrency.equals(targetCurrency)) {
-            BigDecimal rate = getExchangeRate(sourceCurrency, targetCurrency);
-            BigDecimal newBalance = cardEntity.getBalance()
-                    .multiply(rate)
-                    .setScale(2, RoundingMode.HALF_UP);
-            cardEntity.setBalance(newBalance);
-            cardEntity.setCurrency(targetCurrency);
-        }
+        cardEntity.setCurrentCurrency(cardRequest.getCurrency());
         cardRepository.save(cardEntity);
         return cardMapper.toResponse(cardEntity);
     }
@@ -93,18 +85,6 @@ public class CardService {
     public void deleteCard(Long id) {
         CardEntity cardEntity = cardRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Card not found"));
-        cardEntity.getCustomer().setCardCount(cardEntity.getCustomer().getCardCount() - 1);
         cardRepository.delete(cardEntity);
-    }
-
-    private BigDecimal getExchangeRate(Currency from, Currency to) {
-        if (from == Currency.AZN && to == Currency.USD) return new BigDecimal("0.59");
-        if (from == Currency.AZN && to == Currency.EUR) return new BigDecimal("0.51");
-        if (from == Currency.USD && to == Currency.AZN) return new BigDecimal("1.70");
-        if (from == Currency.USD && to == Currency.EUR) return new BigDecimal("0.87");
-        if (from == Currency.EUR && to == Currency.USD) return new BigDecimal("1.16");
-        if (from == Currency.EUR && to == Currency.AZN) return new BigDecimal("1.95");
-
-        return BigDecimal.ONE;
     }
 }
