@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class PaymentScheduler {
     private final PaymentService paymentService;
 
-    @Scheduled(fixedRate = 20000)
+    @Scheduled(cron = "0 0 0 * * *")
     @SchedulerLock(name = "processPaymentsLock", lockAtLeastFor = "1m", lockAtMostFor = "5m")
     public void processPaymentsTask() {
         paymentService.processPendingPayments();
